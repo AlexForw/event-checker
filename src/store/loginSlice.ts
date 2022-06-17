@@ -17,8 +17,14 @@ const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        addUser: (state, action) => {
-            
+        checkUser: (state, action: PayloadAction<string | number>) => {
+            (action.payload.name === state.name
+                && action.payload.password === state.password)
+                ? state.check = true : state.check = false
         }
     }
 })
+
+export const {checkUser} = loginSlice.actions
+
+export default loginSlice.reducer
