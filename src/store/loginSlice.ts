@@ -17,7 +17,8 @@ const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        checkUser: (state, action: PayloadAction<string>) => {
+        checkUser: (state, action: PayloadAction<object>) => {
+            console.log(action.payload.name);
             (action.payload.name === state.name
                 && action.payload.password === state.password)
                 ? state.check = true : state.check = false

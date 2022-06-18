@@ -1,10 +1,12 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-
+import { useAppDispatch } from "../hook";
+import { checkUser } from "../store/loginSlice";
 
 
 const Login: FC = () => {
 
+    const dispatch = useAppDispatch()
 
     const {
         register,
@@ -18,6 +20,11 @@ const Login: FC = () => {
         mode: 'onBlur'
     })
 
+    const login = (data: object): void => {
+        dispatch(checkUser(data))
+        reset()
+    }
+
     return (
         <div className="login">
             <h4 className="login__title">Login</h4>
@@ -25,11 +32,11 @@ const Login: FC = () => {
             <form className="login__form" onSubmit={handleSubmit(login)}>
                 <div className="login__block">
                     <input className="login__input" type='text' {
-                        ...register('email', {
+                        ...register('name', {
                             required: 'Field is required',
                         })
-                    } placeholder='Email..' />
-                    <div className="login__popup">{errors?.email && (errors?.email?.message || Error)}</div>
+                    } placeholder='Name..' />
+                    <div className="login__popup">{errors?.name && (errors?.name?.message || Error)}</div>
                 </div>
 
                 <div className="login__block">
