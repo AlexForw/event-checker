@@ -1,9 +1,39 @@
 import { FC } from "react";
 
+
 const Login: FC = () => {
     return (
-        <div>
-            
+        <div className="login">
+            <h4 className="login__title">Login</h4>
+
+            <form className="login__form" onSubmit={handleSubmit(login)}>
+                <div className="login__block">
+                    <input className="login__input" type='text' {
+                        ...register('email', {
+                            required: 'Field is required',
+                        })
+                    } placeholder='Email..' />
+                    <div className="login__popup">{errors?.email && (errors?.email?.message || Error)}</div>
+                </div>
+
+                <div className="login__block">
+                    <input className="login__input login__input_password" type='text' {
+                        ...register('password', {
+                            required: 'Field is required',
+                            minLength: {
+                                value: 6,
+                                message: 'Min length 6'
+                            }
+                        })
+                    } placeholder='Password..' />
+
+                    <div className="login__popup">{errors?.password && (errors?.password?.message || Error)}</div>
+                </div>
+
+
+                <button className="login__button" type='submit' disabled={!isValid}>Sign in</button>
+
+            </form>
         </div>
     );
 };
