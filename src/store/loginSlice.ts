@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type User = {
     name: string;
-    password: string | number;
+    password: string;
     check: boolean;
 }
 
@@ -17,7 +17,7 @@ const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        checkUser: (state, action: PayloadAction<string | number>) => {
+        checkUser: (state, action: PayloadAction<string>) => {
             (action.payload.name === state.name
                 && action.payload.password === state.password)
                 ? state.check = true : state.check = false
@@ -25,6 +25,6 @@ const loginSlice = createSlice({
     }
 })
 
-export const {checkUser} = loginSlice.actions
+export const { checkUser } = loginSlice.actions
 
 export default loginSlice.reducer

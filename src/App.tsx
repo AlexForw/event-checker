@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Event from "./pages/Event";
 import RequireAuth from "./pages/hoc/RequireAuth";
 import Login from "./pages/Login";
+import './App.css'
+
 
 const App: FC = () => {
   return (

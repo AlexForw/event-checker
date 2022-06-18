@@ -1,7 +1,23 @@
 import { FC } from "react";
+import { useForm } from "react-hook-form";
+
 
 
 const Login: FC = () => {
+
+
+    const {
+        register,
+        formState: {
+            errors,
+            isValid,
+        },
+        handleSubmit,
+        reset,
+    } = useForm({
+        mode: 'onBlur'
+    })
+
     return (
         <div className="login">
             <h4 className="login__title">Login</h4>
