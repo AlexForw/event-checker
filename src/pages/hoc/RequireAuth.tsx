@@ -1,11 +1,14 @@
 import { FC } from "react"
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAppSelector } from "../../hook";
 
 
 const RequireAuth: FC = () => {
     let location = useLocation()
+    let checker = useAppSelector(state => state.login.check)
+    console.log(checker);
     return (
-        false ? <Outlet /> : <Navigate to='/login' state={{ from: location }} replace />
+        checker ? <Outlet /> : <Navigate to='/login' state={{ from: location }} replace />
     )
 }
 
