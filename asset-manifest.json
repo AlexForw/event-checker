@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/event-checker/static/css/main.316707a6.css",
+    "main.js": "/event-checker/static/js/main.a357ec35.js",
+    "index.html": "/event-checker/index.html",
+    "main.316707a6.css.map": "/event-checker/static/css/main.316707a6.css.map",
+    "main.a357ec35.js.map": "/event-checker/static/js/main.a357ec35.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.316707a6.css",
+    "static/js/main.a357ec35.js"
+  ]
+}
