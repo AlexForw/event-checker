@@ -1,8 +1,12 @@
 import { FC } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../hook";
 import { checkUser } from "../store/loginSlice";
 
+type loginObj = {
+    name: string;
+    password: string;
+}
 
 const Login: FC = () => {
 
@@ -16,13 +20,14 @@ const Login: FC = () => {
         },
         handleSubmit,
         reset,
-    } = useForm({
+    } = useForm<loginObj>({
         mode: 'onBlur'
     })
 
-    const login = (data: object): void => {
+    const login: SubmitHandler<loginObj> = (data) => {
         dispatch(checkUser(data))
         reset()
+
     }
 
     return (
@@ -36,7 +41,7 @@ const Login: FC = () => {
                             required: 'Field is required',
                         })
                     } placeholder='Name..' />
-                    <div className="login__popup">{errors?.name && (errors?.name?.message || Error)}</div>
+                    <div className="login__popup">{errors?.name?.message}</div>
                 </div>
 
                 <div className="login__block">
@@ -50,7 +55,7 @@ const Login: FC = () => {
                         })
                     } placeholder='Password..' />
 
-                    <div className="login__popup">{errors?.password && (errors?.password?.message || Error)}</div>
+                    <div className="login__popup">{errors?.password?.message}</div>
                 </div>
 
 
