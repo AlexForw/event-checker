@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hook";
 import { checkUser } from "../store/loginSlice";
 
@@ -9,8 +10,11 @@ type loginObj = {
 }
 
 const Login: FC = () => {
-
     const dispatch = useAppDispatch()
+    const location:any = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
+
 
     const {
         register,
@@ -27,7 +31,7 @@ const Login: FC = () => {
     const login: SubmitHandler<loginObj> = (data) => {
         dispatch(checkUser(data))
         reset()
-
+        navigate(from, { replace: true })
     }
 
     return (
