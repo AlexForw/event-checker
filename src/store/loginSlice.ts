@@ -4,14 +4,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type User = {
     name: string;
     password: string;
-    check?: boolean;
+    check?: boolean | null;
 }
 
 
 const initialState: User = {
     name: 'Alex',
     password: '123456',
-    check: false,
+    check: null,
 }
 const loginSlice = createSlice({
     name: 'login',

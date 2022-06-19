@@ -6,7 +6,6 @@ import { useAppSelector } from "../../hook";
 const RequireAuth: FC = () => {
     let location = useLocation()
     let checker = useAppSelector(state => state.login.check)
-    console.log(checker);
     return (
         checker ? <Outlet /> : <Navigate to='/login' state={{ from: location }} replace />
     )

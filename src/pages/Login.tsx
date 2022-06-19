@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../hook";
+import { useAppDispatch, useAppSelector } from "../hook";
 import { checkUser } from "../store/loginSlice";
 
 type loginObj = {
@@ -11,10 +11,10 @@ type loginObj = {
 
 const Login: FC = () => {
     const dispatch = useAppDispatch()
-    const location:any = useLocation()
+    const location: any = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/'
-
+    const checker = useAppSelector(state => state.login.check)
 
     const {
         register,
@@ -34,10 +34,10 @@ const Login: FC = () => {
         navigate(from, { replace: true })
     }
 
-    return (
+    return (<div className="login__wrapper">
+
         <div className="login">
             <h4 className="login__title">Login</h4>
-
             <form className="login__form" onSubmit={handleSubmit(login)}>
                 <div className="login__block">
                     <input className="login__input" type='text' {
@@ -47,7 +47,6 @@ const Login: FC = () => {
                     } placeholder='Name..' />
                     <div className="login__popup">{errors?.name?.message}</div>
                 </div>
-
                 <div className="login__block">
                     <input className="login__input login__input_password" type='text' {
                         ...register('password', {
@@ -58,15 +57,16 @@ const Login: FC = () => {
                             }
                         })
                     } placeholder='Password..' />
-
                     <div className="login__popup">{errors?.password?.message}</div>
                 </div>
 
-
-                <button className="login__button" type='submit' disabled={!isValid}>Sign in</button>
-
+                <div className="login__block">
+                    <button className="login__button" type='submit' disabled={!isValid}>Sign in</button>
+                    <div className="login__popup">{checker !== null && 'False Name or Password'}</div>
+                </div>
             </form>
         </div>
+    </div>
     );
 };
 
